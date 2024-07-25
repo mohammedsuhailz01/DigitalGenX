@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/lloyds-hack-grp-43-e35386f27e3f.json
+      - REDIS_HOST=redis
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
